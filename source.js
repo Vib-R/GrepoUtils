@@ -1,15 +1,3 @@
-// ==UserScript==
-// @name         TozsdeBot
-// @author       Vib-R
-// @description  Grepolis tőzsde bot
-// @include      http://*.grepolis.com/game/*
-// @include      https://*.grepolis.com/game/*
-// @exclude      view-source://*
-// @exclude      https://classic.grepolis.com/game/*
-// @version      v1.0
-// @grant        GM_addStyle
-// ==/UserScript==
-
 //====================================[USER SETTINGS]====================================\\
 //A városváltás között eltelt idő (milisecond):
 var TickInterval = 1000 * 5;
