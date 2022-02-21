@@ -10,8 +10,6 @@
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
-// @require      https://raw.githubusercontent.com/Vib-R/Market/main/main.js
-// @resource     REMOTE_CSS https://raw.githubusercontent.com/Vib-R/Market/main/style.css
 // ==/UserScript==
 
 (function() {
@@ -26,6 +24,14 @@
             document.head.appendChild(e);
         }
     });
-    const myCss = GM_getResourceText("REMOTE_CSS");
-    GM_addStyle(myCss);
+    GM_xmlhttpRequest({
+        method : "GET",
+        url : "https://raw.githubusercontent.com/Vib-R/Market/main/style.js",
+        onload : (ev) =>
+        {
+            let e = document.createElement('script');
+            e.innerText = ev.responseText;
+            document.head.appendChild(e);
+        }
+    });
 })();
