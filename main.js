@@ -95,15 +95,15 @@ async function CheckResources()
     var ezust = resources[2].innerText.split('/');
 
     //Megnézi, hogy lehet-e eladni:
-    if (fa[0] < fa[1]-GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha lehet eladni fát
+    if (fa[0] < fa[1]-parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha lehet eladni fát
     {
         await SellResources(0);
     }
-    if (ko[0] < ko[1]-GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha lehet eladni követ
+    if (ko[0] < ko[1]-parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha lehet eladni követ
     {
         await SellResources(1);
     }
-    if (ezust[0] < ezust[1]-GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha lehet eladni ezüstöt
+    if (ezust[0] < ezust[1]-parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha lehet eladni ezüstöt
     {
         await SellResources(2);
     }
