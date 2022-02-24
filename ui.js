@@ -11,5 +11,30 @@ GM_config.init(
       'type': 'checkbox',
       'default': false
     }
+     'TozsdeBot_TickInterval':
+    {
+      'label': 'Gyakoriság',
+      'section': ['TőzsdeBot'],
+      'type': 'int',
+      'title': 'Hány másodpercenként váltson át a következő városra.',
+      'default': '5'
+    }
+    'TozsdeBot_CaptchaDetection':
+    {
+      'label': 'Captcha-felismerés',
+      'section': ['TőzsdeBot'],
+      'title': 'Felismeri, ha megjelenik a captcha.',
+      'type': 'checkbox',
+      'default': true
+    }
+    'TozsdeBot_URL':
+    {
+      'label': 'Captcha Hang URL',
+      'section': ['TőzsdeBot'],
+      'type': 'text',
+      'title': 'Ha megjelenik a captcha, lejátssza ezt a hangot.',
+      'size': 250,
+      'default': 'https://notificationsounds.com/storage/sounds/file-sounds-1134-open-up.mp3'
+    }
   }
 });
