@@ -14,7 +14,6 @@ GM_config.init(
      'TozsdeBot_TickInterval':
     {
       'label': 'Gyakoriság',
-      'section': ['TőzsdeBot'],
       'type': 'int',
       'title': 'Hány másodpercenként váltson át a következő városra.',
       'default': '5'
@@ -22,7 +21,6 @@ GM_config.init(
     'TozsdeBot_CaptchaDetection':
     {
       'label': 'Captcha-felismerés',
-      'section': ['TőzsdeBot'],
       'title': 'Felismeri, ha megjelenik a captcha.',
       'type': 'checkbox',
       'default': true
@@ -30,7 +28,6 @@ GM_config.init(
     'TozsdeBot_URL':
     {
       'label': 'Captcha Hang URL',
-      'section': ['TőzsdeBot'],
       'type': 'text',
       'title': 'Ha megjelenik a captcha, lejátssza ezt a hangot.',
       'size': 250,
