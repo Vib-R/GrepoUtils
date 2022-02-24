@@ -18,6 +18,13 @@ GM_config.init(
       'title': 'Hány másodpercenként váltson át a következő városra.',
       'default': '5'
     },
+    'TozsdeBot_MinimalResource':
+    {
+      'label': 'Minimum nyersanyagmennyiség',
+      'type': 'int',
+      'title': 'Mennyi legyen a minimum nyersanyag, amit elküld a tőzsdére.',
+      'default': '100'
+    },
     'TozsdeBot_CaptchaDetection':
     {
       'label': 'Captcha-felismerés',
