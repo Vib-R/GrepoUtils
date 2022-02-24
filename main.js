@@ -58,7 +58,7 @@ async function CheckIfTozsdeIsOpen()
         catch (err){console.log(err)}
         try
         {
-            if (GM_config.get('TozsdeBot_Enabled')) await CheckResources();
+            if (JSON.Parse(GM_config.get('TozsdeBot_Enabled'))) await CheckResources();
         }
         catch (err){console.log(err)}
         await setTimeout(CheckIfTozsdeIsOpen, GM_config.get('TozsdeBot_TickInterval'));
