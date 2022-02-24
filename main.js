@@ -20,7 +20,6 @@ var isRunning;
 //Főszál:
 (function() {
     'use strict';
-    GM_config.open();
     isRunning = false;
     setTimeout(AfterGameLoad, TickInterval);
 })();
@@ -46,6 +45,7 @@ async function AfterGameLoad()
 //Ha rákattintanak a tőzsde controlra.
 function ButtonClickAction (zEvent)
 {
+    GM_config.open();
     if (isRunning) //Ha fut a program
     {
         document.getElementById('btnTozsdeControl').innerText = "Indítás";
