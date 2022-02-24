@@ -11,8 +11,3 @@ GM_config.init(
     }
   }
 });
-
-(function() {
-    'use strict';
-  GM_config.open();
-})();
