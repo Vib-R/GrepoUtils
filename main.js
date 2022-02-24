@@ -38,6 +38,23 @@ function ButtonClickAction (zEvent)
 function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
+//isTrue
+function isTrue(value){
+    if (typeof(value) === 'string'){
+        value = value.trim().toLowerCase();
+    }
+    switch(value){
+        case true:
+        case "true":
+        case 1:
+        case "1":
+        case "on":
+        case "yes":
+            return true;
+        default: 
+            return false;
+    }
+}
 //========================================================================================================\\
 //=======================================[Bot metódusok]==================================================\\
 //Megnézi, hogy meg van-e nyitva a tőzsde:
@@ -58,7 +75,7 @@ async function CheckIfTozsdeIsOpen()
         catch (err){console.log(err)}
         try
         {
-            if (JSON.Parse(GM_config.get('TozsdeBot_Enabled'))) await CheckResources();
+            if (isTrue(GM_config.get('TozsdeBot_Enabled'))) await CheckResources();
         }
         catch (err){console.log(err)}
         await setTimeout(CheckIfTozsdeIsOpen, GM_config.get('TozsdeBot_TickInterval'));
