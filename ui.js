@@ -10,21 +10,21 @@ GM_config.init(
       'title': 'Be legyen-e kapcsolva a tőzsdebot.',
       'type': 'checkbox',
       'default': false
-    }
+    },
      'TozsdeBot_TickInterval':
     {
       'label': 'Gyakoriság',
       'type': 'int',
       'title': 'Hány másodpercenként váltson át a következő városra.',
       'default': '5'
-    }
+    },
     'TozsdeBot_CaptchaDetection':
     {
       'label': 'Captcha-felismerés',
       'title': 'Felismeri, ha megjelenik a captcha.',
       'type': 'checkbox',
       'default': true
-    }
+    },
     'TozsdeBot_URL':
     {
       'label': 'Captcha Hang URL',
