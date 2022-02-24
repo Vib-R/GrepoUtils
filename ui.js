@@ -1,6 +1,7 @@
 GM_config.init(
 {
-  'id': 'MyConfig', // The id used for this instance of GM_config
+  'id': 'MyConfig',
+  'title': 'GrepoUtils v1.2',
   'fields': // Fields object
   {
     'TozsdeBot_Enabled':
