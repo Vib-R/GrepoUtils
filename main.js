@@ -1,17 +1,3 @@
-//====================================[USER SETTINGS]====================================\\
-//A városváltás között eltelt idő (milisecond):
-var TickInterval = 1000 * 5;
-
-//A minimális nyersanyag, ami a szerveren 1 aranyat ér:
-var MinimalValue = 100;
-
-//Be legyen-e kapcsolva a captcha érzékelése? :
-var CaptchaDetection = true;
-
-//A zenefájl, amit lejátszik, ha captchát érzékel:
-var Music = 'https://notificationsounds.com/storage/sounds/file-sounds-1134-open-up.mp3';
-//=======================================================================================\\
-
 //============================================[CONTROL]=================================================\\
 //Változók:
 var player;
@@ -21,7 +7,8 @@ var isRunning;
 (function() {
     'use strict';
     isRunning = false;
-    setTimeout(AfterGameLoad, TickInterval);
+	//Ennyit vár, miután betöltődött az oldal:
+    setTimeout(AfterGameLoad, 5000);
 })();
 
 //Azután hajtódnak végre, miután betöltött a játék:
@@ -29,12 +16,12 @@ async function AfterGameLoad()
 {
     //Hang hozzáadása:
     player = document.createElement('audio');
-    player.src = Music;
+    player.src = GM_config.get('TozsdeBot_URL');
     player.preload = 'auto';
     //Vezérlőgomb hozzáadása:
     var zNode = document.createElement ('div');
     zNode.innerHTML = '<button id="btnTozsdeControl" type="button">'
-                    + 'Indítás</button>';
+                    + 'Beállítások</button>';
     zNode.setAttribute ('id', 'contTozsde');
     document.getElementsByClassName('nui_main_menu')[0].getElementsByClassName('middle')[0].getElementsByClassName('content')[0].appendChild(zNode);
     document.getElementById("btnTozsdeControl").addEventListener("click", ButtonClickAction, false);
@@ -46,16 +33,6 @@ async function AfterGameLoad()
 function ButtonClickAction (zEvent)
 {
     GM_config.open('MyConfig');
-    if (isRunning) //Ha fut a program
-    {
-        document.getElementById('btnTozsdeControl').innerText = "Indítás";
-        isRunning = false;
-    }
-    else
-    {
-        document.getElementById('btnTozsdeControl').innerText = "Leállítás";
-        isRunning = true;
-    }
 }
 //========================================================================================================\\
 //=======================================[Segéd metódusok]================================================\\
@@ -71,7 +48,7 @@ async function CheckIfTozsdeIsOpen()
     var tozsde = document.getElementsByClassName('js-window-main-container classic_window market');
     if (tozsde.length === 0) //Ha nincs megnyitva a tőzsde, akkor vár
     {
-        await setTimeout(CheckIfTozsdeIsOpen, TickInterval);
+        await setTimeout(CheckIfTozsdeIsOpen, GM_config.get('TozsdeBot_TickInterval'));
     }
     else //Ha meg van nyitva a tőzsde:
     {
@@ -83,10 +60,10 @@ async function CheckIfTozsdeIsOpen()
         catch (err){console.log(err)}
         try
         {
-            if (isRunning) await CheckResources();
+            if (GM_config.get('TozsdeBot_Enabled')) await CheckResources();
         }
         catch (err){console.log(err)}
-        await setTimeout(CheckIfTozsdeIsOpen, TickInterval);
+        await setTimeout(CheckIfTozsdeIsOpen, GM_config.get('TozsdeBot_TickInterval'));
     }
 }
 
@@ -103,15 +80,15 @@ async function CheckResources()
     var ezust = resources[2].innerText.split('/');
 
     //Megnézi, hogy lehet-e eladni:
-    if (fa[0] < fa[1]-MinimalValue) //Ha lehet eladni fát
+    if (fa[0] < fa[1]-GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha lehet eladni fát
     {
         await SellResources(0);
     }
-    if (ko[0] < ko[1]-MinimalValue) //Ha lehet eladni követ
+    if (ko[0] < ko[1]-GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha lehet eladni követ
     {
         await SellResources(1);
     }
-    if (ezust[0] < ezust[1]-MinimalValue) //Ha lehet eladni ezüstöt
+    if (ezust[0] < ezust[1]-GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha lehet eladni ezüstöt
     {
         await SellResources(2);
     }
@@ -119,10 +96,10 @@ async function CheckResources()
 async function SellResources(resource)
 {
     var capacity = await document.getElementsByClassName('gp_tab_page js-page js-page-1 game_body')[0].getElementsByClassName('pg_capacity single-progressbar')[0].getElementsByClassName('caption')[0].getElementsByClassName('value_container')[0].getElementsByClassName('curr')[0].innerText;
-    if (capacity > MinimalValue)
+    if (capacity > GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))
     {
         var res = await document.getElementsByClassName('ui_resources_bar')[0].children[resource].innerText; //Lekéri az elérhető nyersanyagot az adott fajtából
-        if (res > MinimalValue) //Ha az elérhető nyersanyagfajtából van elég
+        if (res > GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha az elérhető nyersanyagfajtából van elég
         {
             for (let i = 0; i < 25; i++) //Hozzáadja a nyersanyagot
             {
@@ -136,7 +113,7 @@ async function SellResources(resource)
             await document.getElementsByClassName('confirm_order')[0].getElementsByClassName('button_container')[0].getElementsByClassName('button_new btn_confirm')[0].click();
             await sleep(500);
             var captcha = await document.getElementById('recaptcha_window');
-            if(typeof(captcha) != 'undefined' && captcha != null && CaptchaDetection) player.play();
+            if(typeof(captcha) != 'undefined' && captcha != null && GM_config.get('TozsdeBot_CaptchaDetection')) player.play();
             while(typeof(captcha) != 'undefined' && captcha != null)
             {
                 captcha = await document.getElementById('recaptcha_window');
