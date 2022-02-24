@@ -95,15 +95,15 @@ async function CheckResources()
     var ezust = resources[2].innerText.split('/');
 
     //Megnézi, hogy lehet-e eladni:
-    if (fa[0] < fa[1]-parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha lehet eladni fát
+    if (fa[0] < fa[1]-parseInt(GM_config.get('TozsdeBot_MinimalResource'))) //Ha lehet eladni fát
     {
         await SellResources(0);
     }
-    if (ko[0] < ko[1]-parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha lehet eladni követ
+    if (ko[0] < ko[1]-parseInt(GM_config.get('TozsdeBot_MinimalResource'))) //Ha lehet eladni követ
     {
         await SellResources(1);
     }
-    if (ezust[0] < ezust[1]-parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha lehet eladni ezüstöt
+    if (ezust[0] < ezust[1]-parseInt(GM_config.get('TozsdeBot_MinimalResource'))) //Ha lehet eladni ezüstöt
     {
         await SellResources(2);
     }
@@ -111,10 +111,10 @@ async function CheckResources()
 async function SellResources(resource)
 {
     var capacity = await document.getElementsByClassName('gp_tab_page js-page js-page-1 game_body')[0].getElementsByClassName('pg_capacity single-progressbar')[0].getElementsByClassName('caption')[0].getElementsByClassName('value_container')[0].getElementsByClassName('curr')[0].innerText;
-    if (capacity > parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')))
+    if (capacity > parseInt(GM_config.get('TozsdeBot_MinimalResource')))
     {
         var res = await document.getElementsByClassName('ui_resources_bar')[0].children[resource].innerText; //Lekéri az elérhető nyersanyagot az adott fajtából
-        if (res > parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha az elérhető nyersanyagfajtából van elég
+        if (res > parseInt(GM_config.get('TozsdeBot_MinimalResource'))) //Ha az elérhető nyersanyagfajtából van elég
         {
             for (let i = 0; i < 25; i++) //Hozzáadja a nyersanyagot
             {
