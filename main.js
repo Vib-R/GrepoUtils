@@ -1,12 +1,10 @@
 //============================================[CONTROL]=================================================\\
 //Változók:
 var player;
-var isRunning;
 
 //Főszál:
 (function() {
     'use strict';
-    isRunning = false;
 	//Ennyit vár, miután betöltődött az oldal:
     setTimeout(AfterGameLoad, 5000);
 })();
