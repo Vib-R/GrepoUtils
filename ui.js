@@ -3,11 +3,11 @@ GM_config.init(
   'id': 'MyConfig', // The id used for this instance of GM_config
   'fields': // Fields object
   {
-    'Name': // This is the id of the field
+    'Status':
     {
-      'label': 'Name', // Appears next to field
-      'type': 'text', // Makes this setting a text field
-      'default': 'Sizzle McTwizzle' // Default value if user doesn't change it
+      'label': 'TőzsdeBot', // Appears next to field
+      'type': 'checkbox', // Makes this setting a checkbox input
+      'default': false // Default value if user doesn't change it
     }
   }
 });
