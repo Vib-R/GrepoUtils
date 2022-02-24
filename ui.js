@@ -1,10 +1,3 @@
-// ==UserScript==
-// @name               GrepoUtilsGUI
-// @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
-// @grant              GM_getValue
-// @grant              GM_setValue
-// ==/UserScript==
-
 GM_config.init(
 {
   'id': 'MyConfig', // The id used for this instance of GM_config
