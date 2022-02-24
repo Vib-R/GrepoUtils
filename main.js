@@ -1,3 +1,19 @@
+// ==UserScript==
+// @name         Market_Main
+// @author       Vib-R
+// @description  Grepolis tőzsde bot
+// @include      http://*.grepolis.com/game/*
+// @include      https://*.grepolis.com/game/*
+// @exclude      view-source://*
+// @exclude      https://classic.grepolis.com/game/*
+// @version      v1.2
+// @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
+// @require      https://raw.githubusercontent.com/Vib-R/Market/main/ui.js
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_xmlhttpRequest
+// ==/UserScript==
+
 //====================================[USER SETTINGS]====================================\\
 //A városváltás között eltelt idő (milisecond):
 var TickInterval = 1000 * 5;
