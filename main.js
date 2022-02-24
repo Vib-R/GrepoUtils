@@ -45,7 +45,7 @@ async function AfterGameLoad()
 //Ha rákattintanak a tőzsde controlra.
 function ButtonClickAction (zEvent)
 {
-    GM_config.open();
+    GM_config.open('MyConfig');
     if (isRunning) //Ha fut a program
     {
         document.getElementById('btnTozsdeControl').innerText = "Indítás";
