@@ -63,7 +63,7 @@ async function CheckIfTozsdeIsOpen()
     var tozsde = document.getElementsByClassName('js-window-main-container classic_window market');
     if (tozsde.length === 0) //Ha nincs megnyitva a tőzsde, akkor vár
     {
-        await setTimeout(CheckIfTozsdeIsOpen, GM_config.get('TozsdeBot_TickInterval'));
+        await setTimeout(CheckIfTozsdeIsOpen, parseInt(GM_config.get('TozsdeBot_TickInterval')));
     }
     else //Ha meg van nyitva a tőzsde:
     {
@@ -78,7 +78,7 @@ async function CheckIfTozsdeIsOpen()
             if (isTrue(GM_config.get('TozsdeBot_Enabled'))) await CheckResources();
         }
         catch (err){console.log(err)}
-        await setTimeout(CheckIfTozsdeIsOpen, GM_config.get('TozsdeBot_TickInterval'));
+        await setTimeout(CheckIfTozsdeIsOpen, parseInt(GM_config.get('TozsdeBot_TickInterval')));
     }
 }
 
@@ -111,10 +111,10 @@ async function CheckResources()
 async function SellResources(resource)
 {
     var capacity = await document.getElementsByClassName('gp_tab_page js-page js-page-1 game_body')[0].getElementsByClassName('pg_capacity single-progressbar')[0].getElementsByClassName('caption')[0].getElementsByClassName('value_container')[0].getElementsByClassName('curr')[0].innerText;
-    if (capacity > GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))
+    if (capacity > parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')))
     {
         var res = await document.getElementsByClassName('ui_resources_bar')[0].children[resource].innerText; //Lekéri az elérhető nyersanyagot az adott fajtából
-        if (res > GM_config.get('TozsdeBot_TozsdeBot_MinimalResource')) //Ha az elérhető nyersanyagfajtából van elég
+        if (res > parseInt(GM_config.get('TozsdeBot_TozsdeBot_MinimalResource'))) //Ha az elérhető nyersanyagfajtából van elég
         {
             for (let i = 0; i < 25; i++) //Hozzáadja a nyersanyagot
             {
@@ -128,7 +128,7 @@ async function SellResources(resource)
             await document.getElementsByClassName('confirm_order')[0].getElementsByClassName('button_container')[0].getElementsByClassName('button_new btn_confirm')[0].click();
             await sleep(500);
             var captcha = await document.getElementById('recaptcha_window');
-            if(typeof(captcha) != 'undefined' && captcha != null && GM_config.get('TozsdeBot_CaptchaDetection')) player.play();
+            if(typeof(captcha) != 'undefined' && captcha != null && isTrue(GM_config.get('TozsdeBot_CaptchaDetection'))) player.play();
             while(typeof(captcha) != 'undefined' && captcha != null)
             {
                 captcha = await document.getElementById('recaptcha_window');
