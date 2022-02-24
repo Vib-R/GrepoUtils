@@ -20,7 +20,6 @@ var isRunning;
 //Főszál:
 (function() {
     'use strict';
-    GM_config.open();
     isRunning = false;
     setTimeout(AfterGameLoad, TickInterval);
 })();
