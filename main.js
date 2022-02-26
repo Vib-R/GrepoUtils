@@ -41,12 +41,14 @@ function ButtonClickAction (zEvent)
 //=======================================[Bot metódusok]==================================================\\
 async function CollectData()
 {
-    var towns = document.getElementsByClassName('group_towns')[0].children[0].children;
+    await document.getElementsByClassName('town_groups_dropdown btn_toggle_town_groups_menu')[0].click();
+    var towns = await document.getElementsByClassName('group_towns')[0].children[0].children;
     for (let i = 0; i < towns.length; i++) {
-        CityIds[i] = document.getElementsByClassName('group_towns')[0].children[0].children[i].getAttribute('data-townid');
-        CityNames[i] = document.getElementsByClassName('group_towns')[0].children[0].children[i].getElementsByClassName('town_name')[0].innerText
+        CityIds[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getAttribute('data-townid');
+        CityNames[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getElementsByClassName('town_name')[0].innerText
     } 
-    GM_config.setValue('Cities', CityNames);
+    await GM_config.setValue('Cities', CityNames);
+    await document.getElementsByClassName('town_groups_dropdown btn_toggle_town_groups_menu')[0].click();
 }
 //Megnézi, hogy frissültek-e a grepolis szerverek:
 async function CheckIfServerUpdated()
