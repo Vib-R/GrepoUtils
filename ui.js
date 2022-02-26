@@ -48,6 +48,13 @@ GM_config.init(
       'title': 'Be legyen-e kapcsolva az oldalfrissítés. (Percenként nézi)',
       'type': 'checkbox',
       'default': false
+    },
+    'Cities':
+    {
+      'label': 'Városok', // Appears next to field
+      'type': 'select', // Makes this setting a dropdown
+      'options': ['-'], // Possible choices
+      'default': '-' // Default value if user doesn't change it
     }
   }
 });
