@@ -1,6 +1,8 @@
 //============================================[CONTROL]=================================================\\
 //Változók:
 var player;
+var CityIds = [];
+var CityNames = [];
 
 //Főszál:
 (function() {
@@ -21,8 +23,9 @@ async function InitializeComponents()
     zNode.innerHTML = '<button id="btnTozsdeControl" type="button">'
                     + 'Beállítások</button>';
     zNode.setAttribute ('id', 'contTozsde');
-    document.getElementsByClassName('nui_main_menu')[0].getElementsByClassName('middle')[0].getElementsByClassName('content')[0].appendChild(zNode);
-    document.getElementById("btnTozsdeControl").addEventListener("click", ButtonClickAction, false);
+    await document.getElementsByClassName('nui_main_menu')[0].getElementsByClassName('middle')[0].getElementsByClassName('content')[0].appendChild(zNode);
+    await document.getElementById("btnTozsdeControl").addEventListener("click", ButtonClickAction, false);
+    await CollectData();
     //Tőzsdebot indítása:
     CheckIfTozsdeIsOpen();
     //Oldalfrissítés, ha a szerverek frissültek - elindítása:
@@ -36,6 +39,15 @@ function ButtonClickAction (zEvent)
 }
 //========================================================================================================\\
 //=======================================[Bot metódusok]==================================================\\
+async function CollectData()
+{
+    var towns = document.getElementsByClassName('group_towns')[0].children[0].children;
+    for (let i = 0; i < towns.length; i++) {
+        CityIds[i] = document.getElementsByClassName('group_towns')[0].children[0].children[i].getAttribute('data-townid');
+        CityNames[i] = document.getElementsByClassName('group_towns')[0].children[0].children[i].getElementsByClassName('town_name')[0].innerText
+    } 
+    GM_config.setValue('Cities', CityNames);
+}
 //Megnézi, hogy frissültek-e a grepolis szerverek:
 async function CheckIfServerUpdated()
 {
