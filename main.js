@@ -42,7 +42,9 @@ function ButtonClickAction (zEvent)
 async function CollectData()
 {
     await document.getElementsByClassName('town_groups_dropdown btn_toggle_town_groups_menu')[0].click();
+    await sleep(500);
     var towns = await document.getElementsByClassName('group_towns')[0].children[0].children;
+    await sleep(500);
     for (let i = 0; i < towns.length; i++) {
         CityIds[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getAttribute('data-townid');
         CityNames[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getElementsByClassName('town_name')[0].innerText
