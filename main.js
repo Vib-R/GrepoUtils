@@ -50,7 +50,7 @@ async function CollectData()
         CityNames[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getElementsByClassName('town_name')[0].innerText
     } 
     await sleep(500);
-    await GM_config.setValue('Cities', CityNames.copyWithin);
+    await GM_config.setValue('Cities', ['a,s,d']);
     await document.getElementsByClassName('town_groups_dropdown btn_toggle_town_groups_menu')[0].click();
 }
 //Megnézi, hogy frissültek-e a grepolis szerverek:
