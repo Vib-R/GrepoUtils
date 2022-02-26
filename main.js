@@ -49,7 +49,8 @@ async function CollectData()
         CityIds[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getAttribute('data-townid');
         CityNames[i] = await document.getElementsByClassName('group_towns')[0].children[0].children[i].getElementsByClassName('town_name')[0].innerText
     } 
-    await GM_config.setValue('Cities', CityNames);
+    await sleep(500);
+    await GM_config.setValue('Cities', CityNames.copyWithin);
     await document.getElementsByClassName('town_groups_dropdown btn_toggle_town_groups_menu')[0].click();
 }
 //Megnézi, hogy frissültek-e a grepolis szerverek:
@@ -57,10 +58,13 @@ async function CheckIfServerUpdated()
 {
     if (isTrue(GM_config.get('AntiGrepolisUpdate_Enabled')))
     {
-        if(document.getElementsByClassName('js-window-main-container classic_window update_notification')[0].getElementsByClassName('wnd_border_t js-wnd-buttons')[0].innerText === 'Karbantartás')
+        try
         {
-            window.location.reload();
-        }
+            if(document.getElementsByClassName('js-window-main-container classic_window update_notification')[0].getElementsByClassName('wnd_border_t js-wnd-buttons')[0].innerText === 'Karbantartás')
+            {
+                window.location.reload();
+            }
+        } catch(err){}
     }
     await setTimeout(CheckIfServerUpdated, 60000);
 }
